@@ -62,7 +62,21 @@ const register = async (request, respond) => {
     });
 }
 
+const getUser = async (request, respond) => {
+    const userId = request.params.id;
+    const user = await UserModel.findOne({ _id: userId }).lean();
+
+    if (!user) {
+        return respond.status(400).json({
+            message: 'User not found',
+        });
+    }
+
+    respond.status(200).json(user);
+}
+
 export const authController = (app) => {
     app.post('/auth/login', login)
     app.post('/auth/register', register)
+    app.get('/auth/user/:id', getUser)
 } 

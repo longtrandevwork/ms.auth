@@ -6,7 +6,7 @@ import { connectDB } from './src/db/connection.js';
 import { rootController } from './src/controller/root.js';
 
 const app = express();
-const port = 5035;
+const port = 5036;
 
 dotenv.config();
 
